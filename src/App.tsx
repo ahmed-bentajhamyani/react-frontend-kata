@@ -5,12 +5,14 @@ const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 const ProductPage = lazy(() => import('./pages/ProductPage'));
 import Spinner from './components/ui/spinner/Spinner';
 import Navbar from "./components/Navbar";
+import Cart from "./components/cart/Cart";
 
 function App() {
   return (
     <>
       <Navbar />
-
+      <Cart />
+      
       <ScrollToTop>
         <Routes>
           <Route path="/products" element={
