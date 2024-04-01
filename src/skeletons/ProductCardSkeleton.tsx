@@ -1,7 +1,7 @@
 function ProductCardSkeleton() {
   return (
     <div className="flex flex-col justify-start items-center w-full rounded-3xl py-3">
-      <div className='w-full h-36 bg-secondary rounded-t' />
+      <div className='w-full h-36 bg-secondary rounded-t-2xl' />
 
       <div className="flex flex-col justify-between items-start w-full mt-2 p-2">
         <div className="w-full h-3.5 bg-secondary rounded"></div>
