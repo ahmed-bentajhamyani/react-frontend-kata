@@ -12,12 +12,12 @@ function CartProductCard({ product, cartProduct, }: { product: Product, cartProd
 
     return (
         <div className="flex justify-start items-center space-x-2 lg:space-x-7 p-4">
-            <a href={`/market/product/${product?.id}`}>
+            <a href={`/products/${product?.id}`}>
                 <img src={product?.image} alt='' className='w-16 md:w-20' />
             </a>
             <div className="flex flex-1 justify-between items-center">
                 <div className="">
-                    <a href={`/market/product/${product?.id}`}>
+                    <a href={`/products/${product?.id}`}>
                         <p className='font-semibold text-base line-clamp-1'>{product?.title}</p>
                     </a>
                     <p className='text-xs lg:text-sm line-clamp-1'>{product?.description}</p>

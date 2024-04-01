@@ -1,8 +1,12 @@
+import { useDispatch } from "react-redux"
 import { Product } from "../types/Product"
 import ShoppingCart from "./icons/ShoppingCart"
 import Button from "./ui/Button"
+import { increaseCartQuantity, setShowCart } from "./cart/cartSlice"
 
 function ProductDetails({ product }: { product: Product }) {
+    const dispatch = useDispatch()
+
     return (
         <div className='flex flex-col justify-center lg:items-center'>
             <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center gap-x-8">
@@ -24,6 +28,7 @@ function ProductDetails({ product }: { product: Product }) {
 
                     <Button
                         button={{
+                            action: () => { dispatch(increaseCartQuantity(product?.id)); dispatch(setShowCart(true)); },
                             style: "w-full mt-6 py-2.5 space-x-1 text-lg text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/70"
                         }}
                     >

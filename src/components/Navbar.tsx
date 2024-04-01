@@ -4,6 +4,9 @@ import Button from "./ui/Button";
 import ShoppingCart from "./icons/ShoppingCart";
 import { Link } from "react-router-dom";
 import ArrowLeft from "./icons/ArrowLeft";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowCart } from "./cart/cartSlice";
+import { RootState } from "../store";
 
 function Navbar() {
     const [fix, setFix] = useState(false);
@@ -18,6 +21,9 @@ function Navbar() {
     });
 
     const searchBoxRef = useRef(null);
+
+    const cartQuantity = useSelector((state: RootState) => state.cart.cartQuantity);
+    const dispatch = useDispatch();
 
     return (
         <nav className={`h-16 fixed top-0 left-0 w-full z-30 ${fix && 'bg-white'}`}>
@@ -59,13 +65,19 @@ function Navbar() {
                     >
                         <span className="text-2xl"><Search /></span>
                     </Button>
-                    <Button
-                        button={{
-                            style: "hover:opacity-40"
-                        }}
-                    >
-                        <span className="text-2xl"><ShoppingCart color='#000' /></span>
-                    </Button>
+                    <div className="">
+                        <div className={`${mobileSearchBoxOpen && "hidden"} absolute top-2 md:top-3 right-3 md:right-8 flex items-center justify-center h-5 w-5 bg-black rounded-full text-white`}>
+                            <span className="text-xs">{cartQuantity}</span>
+                        </div>
+                        <Button
+                            button={{
+                                action: () => { dispatch(setShowCart(true)) },
+                                style: "hover:opacity-40"
+                            }}
+                        >
+                            <span className="text-2xl"><ShoppingCart color='#000' /></span>
+                        </Button>
+                    </div>
                 </div>
             </div>
         </nav >

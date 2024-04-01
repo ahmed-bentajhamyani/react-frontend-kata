@@ -2,8 +2,12 @@ import { Link } from "react-router-dom"
 import Button from "./ui/Button"
 import ShoppingCart from "./icons/ShoppingCart"
 import { Product } from "../types/Product"
+import { useDispatch } from "react-redux"
+import { increaseCartQuantity, setShowCart } from "./cart/cartSlice"
 
 function ProductCard({ product }: { product: Product }) {
+    const dispatch = useDispatch();
+
     return (
         <div className="flex flex-col justify-start items-center w-full rounded-3xl px-5 py-3 shadow">
             <Link to={`/products/${product?.id}`}>
@@ -26,6 +30,7 @@ function ProductCard({ product }: { product: Product }) {
 
             <Button
                 button={{
+                    action: () => { dispatch(increaseCartQuantity(product?.id)); dispatch(setShowCart(true)); },
                     style: "w-full mt-3 px-10 py-2 space-x-1 text-sm text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/70"
                 }}
             >
