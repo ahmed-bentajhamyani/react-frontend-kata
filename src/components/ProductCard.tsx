@@ -25,11 +25,15 @@ function ProductCard({ product }: { product: Product }) {
             </div>
 
             <Button
-                style="w-full mt-3 px-10 py-2 space-x-1 text-sm text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/70"
-                icon={<ShoppingCart color='#fff' />}
-                iconStyle="text-xl"
-                text="Add to cart"
-            />
+                button={{
+                    style: "w-full mt-3 px-10 py-2 space-x-1 text-sm text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/70"
+                }}
+            >
+                <>
+                    <span className="text-xl"><ShoppingCart color='#fff' /></span>
+                    <span>Add to cart</span>
+                </>
+            </Button>
         </div>
     )
 }
