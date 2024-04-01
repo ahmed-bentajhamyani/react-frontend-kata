@@ -20,7 +20,7 @@ function Navbar() {
     const searchBoxRef = useRef(null);
 
     return (
-        <nav className={`h-fit fixed top-0 left-0 w-full z-30 ${fix && 'bg-white'}`}>
+        <nav className={`h-16 fixed top-0 left-0 w-full z-30 ${fix && 'bg-white'}`}>
             <div className='container relative mx-auto px-5 md:px-10 py-3 flex items-center justify-between transition-all duration-500 ease-in'>
                 {/* Logo */}
                 <Link to={'/'} className="cursor-pointer">
@@ -37,7 +37,7 @@ function Navbar() {
 
                 {/* Search box mobile */}
                 <div className={`absolute flex-col items-center top-0 left-0 ${mobileSearchBoxOpen ? 'flex md:hidden' : 'hidden'}`}>
-                    <div className="flex items-center justify-start p-2 bg-white text-sm text-text-primary/75 w-screen h-[74px]">
+                    <div className="flex items-center justify-start p-2 bg-white text-sm text-text-primary/75 w-screen h-16">
                         <Button
                             button={{
                                 action: () => { setMobileSearchBoxOpen(false) },
