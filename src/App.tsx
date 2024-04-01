@@ -4,10 +4,13 @@ import { Suspense, lazy } from "react"
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 const ProductPage = lazy(() => import('./pages/ProductPage'));
 import Spinner from './components/ui/spinner/Spinner';
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
+      <Navbar />
+
       <ScrollToTop>
         <Routes>
           <Route path="/products" element={
