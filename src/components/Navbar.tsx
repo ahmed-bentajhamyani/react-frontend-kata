@@ -1,43 +1,53 @@
-import { useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Search from "./icons/Search";
 import Button from "./ui/Button";
 import ShoppingCart from "./icons/ShoppingCart";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ArrowLeft from "./icons/ArrowLeft";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowCart } from "./cart/cartSlice";
 import { RootState } from "../store";
+import { useDebounce } from "../hooks/useDebounce";
 
-function Navbar() {
-    const [fix, setFix] = useState(false);
+function Navbar({ setSearchQuery }: { setSearchQuery: Dispatch<SetStateAction<string>> }) {
+    const location = useLocation();
+    const [hideSearchBox, setHideSearchBox] = useState(false);
     const [mobileSearchBoxOpen, setMobileSearchBoxOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const debouncedSearchQuery: string = useDebounce<string>(searchTerm, 400);
 
-    window.addEventListener("scroll", function () {
-        if (window.scrollY > 0) {
-            setFix(true);
-        } else {
-            setFix(false);
-        }
-    });
+    useEffect(() => {
+        if (location.pathname !== '/products')
+            setHideSearchBox(true);
+        else
+            setHideSearchBox(false);
+    }, [location]);
 
-    const searchBoxRef = useRef(null);
+    const HandleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        setSearchTerm(value);
+    }
+
+    useEffect(() => {
+        setSearchQuery(debouncedSearchQuery);
+    }, [debouncedSearchQuery]);
 
     const cartQuantity = useSelector((state: RootState) => state.cart.cartQuantity);
     const dispatch = useDispatch();
 
     return (
-        <nav className={`h-16 fixed top-0 left-0 w-full z-30 ${fix && 'bg-white'}`}>
-            <div className='container relative mx-auto px-5 md:px-10 py-3 flex items-center justify-between transition-all duration-500 ease-in'>
+        <header className='w-full h-16 fixed top-0 left-0 z-30 bg-white'>
+            <div className='container relative mx-auto px-5 md:px-10 py-3 h-16 flex items-center justify-between transition-all duration-500 ease-in'>
                 {/* Logo */}
                 <Link to={'/'} className="cursor-pointer">
                     <h1 className="font-semibold text-xl">Frontend Kata</h1>
                 </Link>
 
                 {/* Search box desktop */}
-                <div ref={searchBoxRef} className={`relative hidden md:flex flex-col items-center`}>
-                    <div className="flex items-center space-x-2 p-2 bg-secondary text-sm text-text-primary/75 w-[450px] h-9 rounded-lg">
-                        <span><Search /></span>
-                        <input type="text" className='bg-transparent w-full focus:outline-none' placeholder='Rechercher des articles...' />
+                <div className={`${hideSearchBox ? 'hidden' : 'hidden md:flex flex-col items-center'}`}>
+                    <div className="flex items-center space-x-2 p-2 bg-secondary text-sm text-text-primary/75 w-[450px] h-10 rounded-lg">
+                        <span className="opacity-70"><Search /></span>
+                        <input type="text" className='bg-transparent w-full focus:outline-none' placeholder='Search products...' onChange={HandleInputChange} />
                     </div>
                 </div>
 
@@ -52,7 +62,7 @@ function Navbar() {
                         >
                             <span className="text-2xl"><ArrowLeft /></span>
                         </Button>
-                        <input type="text" className='flex flex-1 bg-transparent w-full focus:outline-none' placeholder='Rechercher des articles...' />
+                        <input type="text" className='flex flex-1 bg-transparent w-full focus:outline-none' placeholder='Search products...' />
                     </div>
                 </div>
 
@@ -60,7 +70,7 @@ function Navbar() {
                     <Button
                         button={{
                             action: () => { setMobileSearchBoxOpen(true) },
-                            style: "md:hidden hover:opacity-40"
+                            style: `md:hidden hover:opacity-40 ${hideSearchBox ? 'hidden' : ''}`
                         }}
                     >
                         <span className="text-2xl"><Search /></span>
@@ -80,7 +90,7 @@ function Navbar() {
                     </div>
                 </div>
             </div>
-        </nav >
+        </header>
     )
 }
 

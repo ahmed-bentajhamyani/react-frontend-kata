@@ -26,7 +26,7 @@ function ProductPage() {
     }, [product]);
 
     return (
-        <div className="mt-16">
+        <section className="mb-16">
             {product ?
                 <ProductDetails key={product?.id} product={product!} />
                 :
@@ -34,7 +34,7 @@ function ProductPage() {
             }
             {products ?
                 <div className="mt-10">
-                    <p className='font-extrabold text-3xl 2xl:text-4xl'>
+                    <p className='font-bold text-2xl 2xl:text-4xl'>
                         Related Products
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-6">
@@ -46,7 +46,7 @@ function ProductPage() {
                 :
                 <RelatedProductsSkeleton />
             }
-        </div >
+        </section>
     )
 }
 

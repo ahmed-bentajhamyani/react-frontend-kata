@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import ScrollToTop from "./utils/scrollToTop"
-import { Suspense, lazy } from "react"
+import { Suspense, lazy, useState } from "react"
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
 const ProductPage = lazy(() => import('./pages/ProductPage'));
 import Spinner from './components/ui/spinner/Spinner';
@@ -8,16 +8,18 @@ import Navbar from "./components/Navbar";
 import Cart from "./components/cart/Cart";
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
   return (
     <>
-      <Navbar />
+      <Navbar setSearchQuery={setSearchQuery} />
       <Cart />
-      
+
       <ScrollToTop>
         <Routes>
           <Route path="/products" element={
             <Suspense fallback={<Spinner />}>
-              <ProductsPage />
+              <ProductsPage searchQuery={searchQuery} />
             </Suspense>
           } />
           <Route path="/products/:id" element={

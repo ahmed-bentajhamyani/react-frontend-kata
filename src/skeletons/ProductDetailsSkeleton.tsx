@@ -1,6 +1,6 @@
 function ProductDetailsSkeleton() {
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 items-center w-full">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 items-center w-full">
             <div className="bg-secondary w-full h-96 rounded-lg mt-3"></div>
 
             <div className="w-full mt-4 lg:mt-0">
@@ -18,7 +18,7 @@ function ProductDetailsSkeleton() {
                 {/* Button */}
                 <div className='bg-secondary w-[100%] h-12 rounded-lg mt-14'></div>
             </div>
-        </div>
+        </section>
     )
 }
 

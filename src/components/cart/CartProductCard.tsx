@@ -11,7 +11,7 @@ function CartProductCard({ product, cartProduct, }: { product: Product, cartProd
     const dispatch = useDispatch();
 
     return (
-        <div className="flex justify-start items-center space-x-2 lg:space-x-7 p-4">
+        <article className="flex justify-start items-center space-x-2 lg:space-x-7 p-4">
             <a href={`/products/${product?.id}`}>
                 <img src={product?.image} alt='' className='w-16 md:w-20' />
             </a>
@@ -54,7 +54,7 @@ function CartProductCard({ product, cartProduct, }: { product: Product, cartProd
                     </Button>
                 </div>
             </div>
-        </div>
+        </article>
     )
 }
 

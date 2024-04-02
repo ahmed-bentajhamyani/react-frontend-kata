@@ -9,9 +9,9 @@ function ProductCard({ product }: { product: Product }) {
     const dispatch = useDispatch();
 
     return (
-        <div className="flex flex-col justify-start items-center w-full rounded-lg px-5 py-3 shadow">
+        <article className="flex flex-col justify-start items-center w-full rounded-lg px-5 py-3 shadow">
             <Link to={`/products/${product?.id}`}>
-                <img src={product?.image} alt='' className='h-36 mt-3' />
+                <img loading="lazy" src={product?.image} alt='' className='h-36 mt-3' />
             </Link>
             <div className="flex flex-col justify-between items-start w-full mt-6">
                 <div className="flex justify-between items-center font-bold w-full">
@@ -39,7 +39,7 @@ function ProductCard({ product }: { product: Product }) {
                     <span>Add to cart</span>
                 </>
             </Button>
-        </div>
+        </article>
     )
 }
 
