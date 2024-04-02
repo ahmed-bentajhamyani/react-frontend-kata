@@ -19,11 +19,7 @@ function Cart() {
     useEffect(() => {
         ProductService.getProducts()
             .then(res => setProducts(res));
-    }, [])
-
-    useEffect(() => {
-        console.log(cartProducts);
-    }, [cartProducts]);
+    }, []);
 
     return (
         <>

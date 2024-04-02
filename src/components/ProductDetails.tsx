@@ -11,8 +11,8 @@ function ProductDetails({ product }: { product: Product }) {
         <div className='flex flex-col justify-center lg:items-center'>
             <div className="grid grid-cols-1 lg:grid-cols-2 place-items-center gap-x-8">
                 <img src={product?.image} alt='' className='h-[300px] md:h-[400px] mt-3' />
-                <div className="flex flex-grow flex-col justify-between bg-secondary mt-6 px-5 py-3 w-full rounded-3xl">
-                    <p className='mt-3'>{product?.category}</p>
+                <div className="flex flex-grow flex-col justify-between bg-secondary mt-6 px-5 py-5 w-full rounded-lg">
+                    <p className='font-semibold text-primary'>{product?.category}</p>
 
                     <div className="flex justify-between items-start space-x-3 font-bold">
                         <p className='text-lg md:text-2xl'>{product?.title}</p>

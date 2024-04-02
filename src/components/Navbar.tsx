@@ -35,7 +35,7 @@ function Navbar() {
 
                 {/* Search box desktop */}
                 <div ref={searchBoxRef} className={`relative hidden md:flex flex-col items-center`}>
-                    <div className="flex items-center space-x-2 px-4 py-2 bg-secondary text-sm text-text-primary/75 w-[450px] h-9 rounded-full">
+                    <div className="flex items-center space-x-2 p-2 bg-secondary text-sm text-text-primary/75 w-[450px] h-9 rounded-lg">
                         <span><Search /></span>
                         <input type="text" className='bg-transparent w-full focus:outline-none' placeholder='Rechercher des articles...' />
                     </div>
