@@ -17,6 +17,8 @@ function App() {
 
       <ScrollToTop>
         <Routes>
+          <Route path='/' element={<Navigate to='/products' />} />
+
           <Route path="/products" element={
             <Suspense fallback={<Spinner />}>
               <ProductsPage searchQuery={searchQuery} />
@@ -27,8 +29,6 @@ function App() {
               <ProductPage />
             </Suspense>
           } />
-
-          <Route path='*' element={<Navigate to='/products' />} />
         </Routes>
       </ScrollToTop>
     </>
