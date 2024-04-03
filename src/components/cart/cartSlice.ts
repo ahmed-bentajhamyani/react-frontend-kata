@@ -11,7 +11,7 @@ export interface CartState {
 const initialState: CartState = {
     showCart: false,
     cartProducts: JSON.parse(localStorage.getItem("CartProducts")!) || [],
-    cartQuantity: (JSON.parse(localStorage.getItem("CartProducts")!) as CartItem[]).reduce((quantity: number, item: CartItem) => item.quantity + quantity, 0) || 0,
+    cartQuantity: (JSON.parse(localStorage.getItem("CartProducts")!) as CartItem[])?.reduce((quantity: number, item: CartItem) => item.quantity + quantity, 0) || 0,
 }
 
 export const cartSlice = createSlice({
