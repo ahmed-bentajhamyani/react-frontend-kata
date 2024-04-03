@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import ScrollToTop from "./utils/scrollToTop"
 import { Suspense, lazy, useState } from "react"
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
@@ -17,11 +17,7 @@ function App() {
 
       <ScrollToTop>
         <Routes>
-          <Route path='/' element={
-            <Suspense fallback={<Spinner />}>
-              <ProductsPage searchQuery={searchQuery} />
-            </Suspense>
-          } />
+          <Route path='*' element={<Navigate to='/products' />} />
 
           <Route path="/products" element={
             <Suspense fallback={<Spinner />}>
