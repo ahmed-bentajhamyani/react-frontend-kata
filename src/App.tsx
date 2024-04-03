@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 import ScrollToTop from "./utils/scrollToTop"
 import { Suspense, lazy, useState } from "react"
 const ProductsPage = lazy(() => import('./pages/ProductsPage'));
