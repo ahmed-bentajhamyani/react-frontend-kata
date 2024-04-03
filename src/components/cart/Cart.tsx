@@ -81,7 +81,7 @@ function Cart() {
                             {Intl.NumberFormat("en-US", {
                                 style: "currency",
                                 currency: "USD",
-                            }).format(cartProducts.reduce((total: number, cartProduct: CartItem) => {
+                            }).format(cartProducts?.reduce((total: number, cartProduct: CartItem) => {
                                 const product = products?.find((a) => a.id === cartProduct.id);
                                 return total + (parseFloat(product?.price || '0')) * cartProduct.quantity;
                             }, 0)
